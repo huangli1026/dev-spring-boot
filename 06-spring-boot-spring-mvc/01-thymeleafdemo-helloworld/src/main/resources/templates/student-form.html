@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Registration Form</title>
+</head>
+<body>
+
+<h3>Student Registration Form</h3>
+
+<form th:action="@{/processStudentForm}" th:object="${student}" method="post">
+
+    First name: <input type="text" th:field="*{firstName}" />
+    <br><br>
+
+    Last name: <input type="text" th:field="*{lastName}" />
+    <br><br>
+
+    Country:
+    <select th:field="*{country}">
+<!--    Hard Coded Countries-->
+<!--    <option th:value="Brazil">Brazil</option>-->
+<!--    <option th:value="France">France</option>-->
+<!--    <option th:value="Germany">Germany</option>-->
+<!--    <option th:value="India">India</option>-->
+    <option th:each="tempCountry : ${countries}" th:value="${tempCountry}" th:text="${tempCountry}"></option>
+    </select>
+    <br><br>
+    Favorite Programming Language:
+<!--    Hard Coded Language-->
+<!--    <input type="radio" th:field="*{favoriteLanguage}" th:value="Go" th:text="Go" />-->
+<!--    <input type="radio" th:field="*{favoriteLanguage}" th:value="Java" th:text="Java" />-->
+<!--    <input type="radio" th:field="*{favoriteLanguage}" th:value="Python" th:text="Python" />-->
+    <input type="radio" th:field="*{favoriteLanguage}" th:each="tempLanguage : ${languages}"  th:value="${tempLanguage}" th:text="${tempLanguage}">
+    <br><br>
+    Favorite Operating System:
+    <!--    Hard Coded Systems-->
+<!--        <input type="checkbox" th:field="*{favoriteSystems}" th:value="Linux" th:text="Linux" />-->
+<!--        <input type="checkbox" th:field="*{favoriteSystems}" th:value="macOS" th:text="macOS" />-->
+<!--        <input type="checkbox" th:field="*{favoriteSystems}" th:value="'Microsoft Windows'" th:text="'Microsoft Windows'" />-->
+    <input type="checkbox" th:field="*{favoriteSystems}" th:each="tempSystem : ${systems}"  th:value="${tempSystem}" th:text="${tempSystem}">
+    <br><br>
+
+    <input type="submit" value="Submit">
+</form>
+</body>
+</html>
